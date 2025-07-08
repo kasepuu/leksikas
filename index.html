@@ -1,0 +1,89 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leksikas</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="https://raw.githubusercontent.com/kasepuu/kasepuu.github.io/refs/heads/main/icon.svg"
+    type="image/x-icon" />
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="theme-picker-container">
+      <button class="theme-picker-btn" title="Change Theme"><span class="theme-icon">🎨</span></button>
+      <div class="theme-dropdown">
+        <div class="theme-item" data-theme="ocean">
+          <div class="theme-preview" style="background: linear-gradient(45deg, #7fdbff, #00a8ff);"></div>
+          <span class="theme-name">Ocean</span>
+        </div>
+        <div class="theme-item" data-theme="forest">
+          <div class="theme-preview" style="background: linear-gradient(45deg, #2ecc71, #27ae60);"></div>
+          <span class="theme-name">Forest</span>
+        </div>
+        <div class="theme-item" data-theme="sunset">
+          <div class="theme-preview" style="background: linear-gradient(45deg, #e74c3c, #f39c12);"></div>
+          <span class="theme-name">Sunset</span>
+        </div>
+        <div class="theme-item" data-theme="lavender">
+          <div class="theme-preview" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);"></div>
+          <span class="theme-name">Lavender</span>
+        </div>
+        <div class="theme-item" data-theme="midnight">
+          <div class="theme-preview" style="background: linear-gradient(45deg, #34495e, #2c3e50);"></div>
+          <span class="theme-name">Midnight</span>
+        </div>
+      </div>
+    </div>
+    <div class="leksikas-container">
+      <div class="title-container">
+        <a href="/" class="back-btn">←</a>
+        <h1 id="title">Leksikas</h1>
+      </div>
+      <div class="main-flex-row">
+        <div class="form-col">
+          <button class="config-toggle-btn" id="configToggleBtn" title="Show/Hide Settings">⚙️ Settings</button>
+          <div class="form-card" id="formCard">
+            <div class="config-section" id="configSection">
+              <form id="loadForm">
+                <div class="inline-field">
+                  <label for="letterFilter">Include letters:</label>
+                  <input type="text" id="letterFilter" name="letterFilter" placeholder="öäü">
+                </div>
+                <div>
+                  <label><input type="checkbox" id="includeOnly" name="includeOnly"> Must include all of the above
+                    letters</label>
+                </div>
+                <div>
+                  <label for="wordLength">Word length:</label>
+                  <input type="number" id="wordLength" name="wordLength" min="2" max="10" placeholder="5" value="5">
+                </div>
+                <div>
+                  <input id="submitButton" type="submit" value="Load Words">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="results-card">
+          <h3 id="count">Words found and stored: 0</h3>
+          <div class="random-box">
+            <form id="randomWord">
+              <div class="random-row">
+                <input id="randomizeButton" type="submit" value="Random">
+                <input type="number" id="wordCount" name="wordCount" min="1" max="100" placeholder="1" value="1">
+              </div>
+            </form>
+          </div>
+          <div id="randomGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="src/theme-manager.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
