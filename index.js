@@ -68,17 +68,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     const formCard = document.getElementById('formCard');
     const configToggleBtn = document.getElementById('configToggleBtn');
+    let userToggledSettings = false;
     function setFormCardInitial() {
-        if (window.innerWidth <= 900) {
-            formCard.classList.add('hide');
-        } else {
-            formCard.classList.remove('hide');
+        if (!userToggledSettings) {
+            if (window.innerWidth <= 900) {
+                formCard.classList.add('hide');
+            } else {
+                formCard.classList.remove('hide');
+            }
         }
     }
     setFormCardInitial();
     window.addEventListener('resize', setFormCardInitial);
     configToggleBtn.addEventListener('click', () => {
         formCard.classList.toggle('hide');
+        userToggledSettings = true;
     });
 });
 
