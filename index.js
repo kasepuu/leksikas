@@ -122,7 +122,7 @@ document.getElementById("loadForm").addEventListener("submit", async function (e
     try {
         const response = await fetch("/leksikas/et_EE_sonastik.txt");
 
-        let letters = document.getElementById("letterFilter").value;
+        let letters = document.getElementById("letterFilter").value.toLowerCase();
         let mustInclude = document.getElementById("includeOnly").checked;
         let length = parseInt(document.getElementById("wordLength").value, 10);
 
