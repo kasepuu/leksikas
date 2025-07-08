@@ -389,7 +389,28 @@ li {
     .form-card,
     .results-card {
         padding: 0;
+        min-width: 0 !important;
+        max-width: 100vw;
+    }
+
+    .inline-field {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+    }
+
+    .inline-field label {
         min-width: 0;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        width: 100%;
     }
 
     .config-toggle-btn {
