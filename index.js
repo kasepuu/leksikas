@@ -116,7 +116,7 @@ document.getElementById("loadForm").addEventListener("submit", async function (e
     submitBtn.value = "Loading...";
     submitBtn.disabled = true;
     try {
-        const response = await fetch("/et_EE_sõnastik.txt");
+        const response = await fetch("/et_EE_sonastik.txt");
 
         let letters = document.getElementById("letterFilter").value;
         let mustInclude = document.getElementById("includeOnly").checked;
