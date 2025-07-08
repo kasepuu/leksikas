@@ -19,7 +19,9 @@ function getSettings() {
         return {
             letterFilter: '',
             includeOnly: false,
-            wordLength: 5
+            wordLength: 5,
+            randomCount: 1,
+            theme: 'ocean'
         };
     }
     try {
@@ -27,13 +29,17 @@ function getSettings() {
         return {
             letterFilter: parsed.letterFilter || '',
             includeOnly: !!parsed.includeOnly,
-            wordLength: parseInt(parsed.wordLength, 10) || 5
+            wordLength: parseInt(parsed.wordLength, 10) || 5,
+            randomCount: parseInt(parsed.randomCount, 10) || 1,
+            theme: parsed.theme || 'ocean'
         };
     } catch {
         return {
             letterFilter: '',
             includeOnly: false,
-            wordLength: 5
+            wordLength: 5,
+            randomCount: 1,
+            theme: 'ocean'
         };
     }
 }
@@ -46,9 +52,11 @@ function prefillSettingsForm() {
     document.getElementById('letterFilter').value = settings.letterFilter;
     document.getElementById('includeOnly').checked = settings.includeOnly;
     document.getElementById('wordLength').value = settings.wordLength;
+    document.getElementById('wordCount').value = settings.randomCount;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("count").textContent = `Words found and stored: ${storedWords.length}`;
     prefillSettingsForm();
     setRandomFormVisibility();
     document.getElementById('letterFilter').addEventListener('input', function (e) {
@@ -64,6 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('wordLength').addEventListener('input', function (e) {
         const settings = getSettings();
         settings.wordLength = e.target.value;
+        setSettings(settings);
+    });
+    document.getElementById('wordCount').addEventListener('input', function (e) {
+        const settings = getSettings();
+        settings.randomCount = e.target.value;
         setSettings(settings);
     });
     const formCard = document.getElementById('formCard');
@@ -173,6 +186,9 @@ function updateRandomResult(selectedWords) {
 document.getElementById("randomWord").addEventListener("submit", function (e) {
     e.preventDefault();
     const count = parseInt(document.getElementById("wordCount").value, 10)
+    const settings = getSettings();
+    settings.randomCount = count;
+    setSettings(settings);
     if (storedWords.length == 0) {
         alert("No words stored. Please load words first.");
         return;

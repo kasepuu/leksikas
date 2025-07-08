@@ -83,12 +83,27 @@ class ThemeManager {
     }
 
     static getCurrentTheme() {
+        // Try to get from leksikasSettings first
+        const settingsRaw = localStorage.getItem('leksikasSettings');
+        if (settingsRaw) {
+            try {
+                const settings = JSON.parse(settingsRaw);
+                if (settings.theme) return settings.theme;
+            } catch {}
+        }
         return localStorage.getItem('theme') || 'ocean';
     }
 
     static setTheme(theme) {
         if (this.themes[theme]) {
             localStorage.setItem('theme', theme);
+            // Also update leksikasSettings
+            let settings = {};
+            try {
+                settings = JSON.parse(localStorage.getItem('leksikasSettings')) || {};
+            } catch { settings = {}; }
+            settings.theme = theme;
+            localStorage.setItem('leksikasSettings', JSON.stringify(settings));
             this.applyTheme(theme);
             document.dispatchEvent(new Event('themeChanged'));
         }
