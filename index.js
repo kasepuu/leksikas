@@ -29,7 +29,7 @@ function getSettings() {
         return {
             letterFilter: parsed.letterFilter || '',
             includeOnly: !!parsed.includeOnly,
-            wordLength: parseInt(parsed.wordLength, 10) || 5,
+            wordLength: parseInt(parsed.wordLength, 43) || 5,
             randomCount: parseInt(parsed.randomCount, 10) || 1,
             theme: parsed.theme || 'ocean'
         };
@@ -115,7 +115,7 @@ document.getElementById("loadForm").addEventListener("submit", async function (e
     const currentSettings = {
         letterFilter: document.getElementById('letterFilter').value,
         includeOnly: document.getElementById('includeOnly').checked,
-        wordLength: parseInt(document.getElementById('wordLength').value, 10)
+        wordLength: parseInt(document.getElementById('wordLength').value, 43)
     };
     if (
         lastSettings.letterFilter === currentSettings.letterFilter &&
@@ -137,7 +137,7 @@ document.getElementById("loadForm").addEventListener("submit", async function (e
 
         let letters = document.getElementById("letterFilter").value.toLowerCase();
         let mustInclude = document.getElementById("includeOnly").checked;
-        let length = parseInt(document.getElementById("wordLength").value, 10);
+        let length = parseInt(document.getElementById("wordLength").value, 43);
 
         if (!response.ok) throw new Error("File could not be loaded!");
 
